@@ -1,14 +1,20 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { MessageSquare } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { Toaster } from "@/components/ui/toaster";
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
+interface Dot {
+  x: number;
+  y: number;
+  size: number;
+  animationDuration: number;
+}
 
 const AnimatedBackground = () => {
-  const [dots, setDots] = useState<
-    { x: number; y: number; size: number; animationDuration: number }[]
-  >([]);
+  const [dots, setDots] = useState<Dot[]>([]);
 
   useEffect(() => {
     const newDots = [];
@@ -43,6 +49,42 @@ const AnimatedBackground = () => {
 };
 
 export default function Component() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(
+        "https://jsonplaceholder.typicode.com/posts",
+        {
+          email,
+          password,
+        }
+      );
+
+      console.log("Sign-in successful:", response.data);
+      toast({
+        title: "Sign-in Successful",
+        description: "You have successfully signed in.",
+      });
+      // Here you would typically store the user's session/token and redirect
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+      toast({
+        title: "Sign-in Failed",
+        description: "There was an error signing in. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex">
       <div className="flex-1 relative bg-green-50">
@@ -67,7 +109,7 @@ export default function Component() {
 
           <div className="mt-8">
             <div className="mt-6">
-              <form action="#" method="POST" className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Label
                     htmlFor="email"
@@ -82,6 +124,8 @@ export default function Component() {
                       type="email"
                       autoComplete="email"
                       required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                     />
                   </div>
@@ -101,6 +145,8 @@ export default function Component() {
                       type="password"
                       autoComplete="current-password"
                       required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                     />
                   </div>
@@ -135,9 +181,10 @@ export default function Component() {
                 <div>
                   <Button
                     type="submit"
+                    disabled={isLoading}
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                   >
-                    Sign in
+                    {isLoading ? "Signing in..." : "Sign in"}
                   </Button>
                 </div>
               </form>
@@ -219,6 +266,7 @@ export default function Component() {
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }
