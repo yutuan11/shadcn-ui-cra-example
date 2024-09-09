@@ -22,7 +22,7 @@ example：cra创建基础模板+shadcn-UI+tailwindcss
    ```
    	npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react
    ```
-3.创建`tailwind.config.js` 并拷贝：
+3. 创建`tailwind.config.js` 并拷贝：
 
    ```javascript
    const { fontFamily } = require("tailwindcss/defaultTheme");
@@ -103,7 +103,7 @@ example：cra创建基础模板+shadcn-UI+tailwindcss
    };
    ```
 
-1. 添加全局样式 `src/index.css`:
+4. 添加全局样式 `src/index.css`:
 
    ```css
    @tailwind base;
