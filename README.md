@@ -18,7 +18,7 @@ example：cra 创建基础模板+shadcn-UI+tailwindcss+axios
 
 2. 安装依赖:
    ```
-   	npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react
+   	npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react axios
    ```
 3. 创建`tailwind.config.js` 并拷贝：
 
