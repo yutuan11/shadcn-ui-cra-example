@@ -1,4 +1,3 @@
-
 ## 运行
 
 1. Install Dependencies
@@ -11,13 +10,12 @@
    npm run start
    ```
 
+## 接入 v0
 
-## 接入v0
-example：cra创建基础模板+shadcn-UI+tailwindcss
+example：cra 创建基础模板+shadcn-UI+tailwindcss+axios
 
-1. 初始化ts模板: `npx create-react-app shadcn-ui-cra-example --template typescript`
+1. 初始化 ts 模板: `npx create-react-app shadcn-ui-cra-example --template typescript`
 
- 
 2. 安装依赖:
    ```
    	npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react
@@ -189,8 +187,7 @@ example：cra创建基础模板+shadcn-UI+tailwindcss
    }
    ```
 
-
-5. 编辑ts配置 `tsconfig.json` :
+5. 编辑 ts 配置 `tsconfig.json` :
    ```json
    {
      "compilerOptions": {
@@ -234,10 +231,10 @@ example：cra创建基础模板+shadcn-UI+tailwindcss
    }
    ```
 
-  
 7. 新增第一个 Shadcn/ui 组件. 运行: `npx shadcn-ui add button` and edit the path command to be `@/src/components/ui`
 
-   [ts中能够配置@路径别名简化路径处理](https://juejin.cn/post/7035580740850941989)
+   [ts 中能够配置@路径别名简化路径处理](https://juejin.cn/post/7035580740850941989)
+
 8. 删除`App.css` 文件并重写`App.tsx`:
 
    ```typescript
@@ -275,8 +272,8 @@ example：cra创建基础模板+shadcn-UI+tailwindcss
    export default App;
    ```
 
-9.  启动:
-   ```bash
-   npm run start
-   ```
+9. 启动:
 
+```bash
+npm run start
+```
